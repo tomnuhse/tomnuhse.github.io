@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>D-Glutamic Acid 3D Viewer</title>
+
+  <!-- Load 3Dmol.js -->
+  <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    #viewer {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewer"></div>
+
+  <script>
+    // Create viewer
+    var element = document.getElementById("viewer");
+    var config = { backgroundColor: "white" };
+    var viewer = $3Dmol.createViewer(element, config);
+
+    // D-Glutamic acid from PubChem (CID 439260)
+    $3Dmol.download("cid:439260", viewer, {}, function() {
+      viewer.setStyle({}, {stick: {radius: 0.18}, sphere: {scale: 0.3}});
+      viewer.zoomTo();
+      viewer.render();
+    });
+  </script>
+</body>
+</html>
